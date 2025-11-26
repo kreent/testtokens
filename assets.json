@@ -1,0 +1,39 @@
+{
+  "assets": {
+    "brand": {
+      "logo-light": {
+        "description": "For backgrounds with light colors",
+        "value": "https://www.kushkipagos.com/nav/images/k-logo.svg",
+        "type": "asset",
+        "dimensions": {
+          "width": "160px",
+          "height": "auto"
+        }
+      },
+      "logo-dark": {
+        "description": "For backgrounds with dark colors",
+        "value": "https://firebasestorage.googleapis.com/v0/b/studio-3394656532-f7e40.firebasestorage.app/o/podcast%2Fimages%2Flogo.svg?alt=media&token=d4305409-1294-416b-96f2-3cfc41b3225d",
+        "type": "asset",
+        "dimensions": {
+          "width": "160px",
+          "height": "auto"
+        }
+      },
+      "favicon": {
+        "url": {
+          "value": "https://www.kushkipagos.com/_next/static/media/kLogo.d200f752.svg",
+          "type": "asset"
+        },
+        "size": {
+          "value": "32px",
+          "type": "dimension"
+        }
+      }
+    },
+    "icon": {
+      "info": { "value": "info", "type": "string" },
+      "check": { "value": "check", "type": "string" },
+      "error": { "value": "error", "type": "string" }
+    }
+  }
+}

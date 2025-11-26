@@ -1,0 +1,134 @@
+{
+  "component": {
+    "sidebar": {
+      "container": {
+        "background": {
+          "value": "{semantic.color.background.surface.default}",
+          "type": "color",
+          "description": "Fondo blanco/gris muy claro del sidebar"
+        },
+        "shadow": {
+          "value": "{semantic.shadow.menu}",
+          "type": "boxShadow",
+          "description": "Sombra de elevación alta específica para menús flotantes"
+        },
+        "radius": {
+          "value": "{semantic.radius.surface.default}",
+          "type": "borderRadius",
+          "description": "Borde redondeado del contenedor principal"
+        },
+        "padding": {
+          "vertical": { "value": "{semantic.sizing.md}", "type": "spacing" },
+          "horizontal": { "value": "{semantic.sizing.xs}", "type": "spacing" }
+        }
+      },
+      "toggle": {
+        "background": {
+          "value": "{semantic.color.background.surface.default}",
+          "type": "color"
+        },
+        "shadow": {
+          "value": "{semantic.shadow.sm}",
+          "type": "boxShadow"
+        },
+        "icon": {
+          "value": "{semantic.color.text.dark}",
+          "type": "color"
+        }
+      },
+      "badge": {
+        "background": {
+          "value": "{semantic.surface.info}",
+          "type": "color",
+          "description": "Fondo azul claro para el estado 'Modo de prueba'"
+        },
+        "text": {
+          "value": "{semantic.text.info}",
+          "type": "color",
+          "description": "Texto azul para el estado"
+        },
+        "typography": {
+          "value": "{semantic.typography.overline}",
+          "type": "typography",
+          "description": "Texto pequeño en mayúsculas"
+        },
+        "radius": {
+          "value": "{semantic.radius.surface.default}",
+          "type": "borderRadius"
+        }
+      },
+      "menu-item": {
+        "spacing": {
+          "value": "{semantic.sizing.xs}",
+          "type": "spacing",
+          "description": "Espacio vertical entre items"
+        },
+        "default": {
+          "text": {
+            "value": "{semantic.color.text.subtle}",
+            "type": "color",
+            "description": "Gris semántico para items inactivos"
+          },
+          "icon": {
+            "value": "{semantic.color.text.subtle}",
+            "type": "color"
+          },
+          "typography": {
+            "value": "{semantic.typography.p}",
+            "type": "typography",
+            "description": "Peso Medium para items de primer nivel"
+          }
+        },
+        "hover": {
+          "background": {
+            "value": "{semantic.color.background.surface.subtle}",
+            "type": "color"
+          },
+          "text": {
+            "value": "{semantic.color.text.blue}",
+            "type": "color"
+          }
+        },
+        "active": {
+          "text": {
+            "value": "{semantic.color.text.blue}",
+            "type": "color",
+            "description": "Azul semántico para el item seleccionado"
+          },
+          "indicator": {
+            "value": "{semantic.color.border.interactive.focus}",
+            "type": "color",
+            "description": "Línea azul vertical a la izquierda"
+          },
+          "background": {
+            "value": "{semantic.surface.info}",
+            "type": "color",
+            "description": "Opcional: fondo sutil azulado para el activo"
+          }
+        }
+      },
+      "sub-menu-item": {
+        "indentation": {
+          "value": "{semantic.sizing.xl}",
+          "type": "spacing",
+          "description": "Indentación para items hijos como Sift Science"
+        },
+        "typography": {
+          "value": "{semantic.typography.p-plus}",
+          "type": "typography",
+          "description": "Peso Regular para items anidados"
+        }
+      },
+      "group-title": {
+        "typography": {
+          "value": "{semantic.typography.subtitle-2}",
+          "type": "typography"
+        },
+        "text": {
+          "value": "{semantic.color.text.subtle}",
+          "type": "color"
+        }
+      }
+    }
+  }
+}

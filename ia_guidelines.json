@@ -1,0 +1,13 @@
+{
+  "$extensions": {
+    "ai": {
+      "guidelines": {
+        "icons": {
+          "use": "Use Google Material Symbols Rounded for all icons",
+          "placement": ["leading", "trailing"],
+          "size-mapping": "Match icon size with button size (sm/md/lg) using component.common.icon.size"
+        }
+      }
+    }
+  }
+}

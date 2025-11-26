@@ -1,0 +1,96 @@
+{
+  "component": {
+    "table": {
+      "container": {
+        "spacing": {
+          "row": {
+            "value": "{primitive.dimension.8}",
+            "type": "spacing",
+            "description": "border-spacing vertical de 8px"
+          }
+        },
+        "background": {
+          "value": "{primitive.color.white}",
+          "type": "color"
+        }
+      },
+      "header": {
+        "background": {
+          "value": "{semantic.color.border.decorative.default}",
+          "type": "color",
+          "description": "Mapeado a Gray 400 (#E2E8F0) usado en el CSS"
+        },
+        "border": {
+          "radius": {
+            "value": "{primitive.radius.small}",
+            "type": "borderRadius",
+            "description": "8px border radius"
+          },
+          "color": {
+            "value": "{semantic.color.border.decorative.default}",
+            "type": "color"
+          }
+        },
+        "typography": {
+          "value": {
+            "fontFamily": "{primitive.font-family.ibm-plex-sans}",
+            "fontWeight": "{primitive.font-weight.semi-bold}",
+            "fontSize": "{primitive.font-size.scale-150}",
+            "lineHeight": "{primitive.line-height.condensed}",
+            "color": "{semantic.color.text.blue}"
+          },
+          "type": "typography",
+          "description": "Fuente 14px (scale-150), peso 600, color Blue 500 (#023365)"
+        },
+        "sizing": {
+          "height": {
+            "value": "45px",
+            "type": "sizing",
+            "description": "Valor personalizado del CSS, no existe token exacto (40px o 48px)"
+          }
+        }
+      },
+      "row": {
+        "background": {
+          "default": {
+            "value": "{primitive.color.white}",
+            "type": "color"
+          },
+          "hover": {
+            "value": "{semantic.color.background.surface.subtle}",
+            "type": "color",
+            "description": "Mapeado a Gray 200 para simular Whitesmoke"
+          }
+        }
+      },
+      "cell": {
+        "border": {
+          "width": {
+            "value": "{primitive.border-width.1}",
+            "type": "borderWidth"
+          },
+          "color": {
+            "value": "{semantic.color.border.decorative.default}",
+            "type": "color",
+            "description": "Gray 400 (#E2E8F0)"
+          },
+          "radius": {
+            "value": "{primitive.radius.small}",
+            "type": "borderRadius"
+          }
+        },
+        "typography": {
+          "value": {
+            "fontFamily": "{primitive.font-family.ibm-plex-sans}",
+            "fontWeight": "{primitive.font-weight.medium}",
+            "fontSize": "{primitive.font-size.scale-150}",
+            "lineHeight": "{primitive.line-height.condensed}",
+            "color": "{semantic.color.text.grey}"
+          },
+          "type": "typography",
+          "description": "Fuente 14px, peso 500 (heredado de thead), color Gray 700 (#6D7781)"
+        }
+      }
+    }
+  }
+}

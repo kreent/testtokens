@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kushki - Gestión de Usuarios</title>
+
+    <!-- Fuentes: IBM Plex Sans (definida en tokens) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Iconos: Google Material Symbols Rounded -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24..48,400,0,0" rel="stylesheet" />
+
+    <style>
+        /* =========================================
+           TOKENS (Fuente de verdad)
+           ========================================= */
+        :root {
+            /* Copia exacta de los tokens proporcionados para garantizar fidelidad */
+            --ds-assets-brand-favicon-size: 32px;
+            --ds-assets-brand-logo-light-value: https://www.kushkipagos.com/nav/images/k-logo.svg;
+
+            /* Colores Primitivos y Semánticos Clave */
+            --ds-primitive-color-white: #ffffff;
+            --ds-semantic-color-background-surface-default: #fbfcfe;
+            --ds-semantic-color-background-surface-subtle: #f7fafc;
+            --ds-semantic-color-text-dark: #293036;
+            --ds-semantic-color-text-grey: #6d7781;
+            --ds-semantic-color-text-info: #1e65ae;
+            --ds-semantic-color-status-success: #0dc298;
+            --ds-semantic-color-border-decorative-default: #e2e8f0;
+            --ds-semantic-focus-ring-color: #023365;
+
+            /* Sidebar Tokens */
+            --ds-component-sidebar-container-background: #fbfcfe;
+            --ds-component-sidebar-container-padding-horizontal: 1rem;
+            --ds-component-sidebar-container-padding-vertical: 2rem;
+            --ds-component-sidebar-menu-item-default-text: #b4b9be;
+            --ds-component-sidebar-menu-item-active-text: #023365;
+            --ds-component-sidebar-menu-item-active-background: #eef6ff;
+            --ds-component-sidebar-menu-item-active-indicator: #023365;
+            --ds-component-sidebar-menu-item-spacing: 1rem;
+            --ds-component-sidebar-group-title-text: #b4b9be;
+
+            /* Button Tokens */
+            --ds-component-button-common-button-size-medium-height: 2.25rem;
+            --ds-component-button-common-button-size-medium-padding-x: 1rem;
+            --ds-component-button-icon-button-primary-states-default-background: #4498ee;
+            --ds-component-button-icon-button-primary-states-default-icon: #ffffff;
+            --ds-semantic-radius-interactive-default: 1rem; /* Aproximación para botones redondeados generales */
+
+            /* Table Tokens */
+            --ds-component-table-container-spacing-row: 0.5rem;
+            --ds-component-table-header-background: #e2e8f0;
+            --ds-component-table-header-sizing-height: 45px;
+            --ds-component-table-cell-border-color: #e2e8f0;
+            --ds-component-table-cell-border-radius: 0.5rem;
+            --ds-component-table-cell-border-width: 0.0625rem;
+            --ds-component-table-row-background-default: #ffffff;
+            --ds-component-table-row-background-hover: #f7fafc;
+
+            /* Inputs */
+            --ds-patterns-forms-input-control-background: #fbfcfe;
+            --ds-patterns-forms-input-control-border-color: #4498ee;
+            --ds-patterns-forms-input-control-radius: 0.75rem;
+            --ds-patterns-forms-input-control-height: 2.5rem;
+            --ds-patterns-forms-input-control-text-placeholder: #b4b9be;
+
+            /* Badges */
+            --ds-component-data-display-badges-pill-badge-variants-green-background: #0dc298;
+            --ds-component-data-display-badges-pill-badge-text-color: #ffffff;
+            --ds-component-data-display-badges-pill-badge-radius: 9999px;
+            --ds-component-data-display-badges-pill-badge-size-height: 0.875rem;
+
+            /* Layout & Spacing */
+            --ds-patterns-layout-spacing-system-inline-sm: 0.5rem;
+            --ds-patterns-layout-spacing-system-inline-md: 0.75rem;
+            --ds-patterns-layout-spacing-system-inline-lg: 1rem;
+            --ds-patterns-layout-spacing-system-stack-md: 1rem;
+            --ds-patterns-layout-spacing-system-stack-lg: 1.5rem;
+
+            /* Shadows */
+            --ds-primitive-shadow-elevation-1-raw: 0 0.5rem 1.0625rem 0 rgba(106, 167, 197, 0.15), 0 1.6px 2.76px 0 rgba(106, 167, 197, 0.075);
+
+            /* Fonts */
+            --font-main: 'IBM Plex Sans', sans-serif;
+        }
+
+        /* =========================================
+           RESET & GLOBAL
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--ds-semantic-color-background-surface-subtle);
+            color: var(--ds-semantic-color-text-dark);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Utilidad para iconos */
+        .material-symbols-rounded {
+            font-size: 20px; /* Ajuste visual estándar */
+            vertical-align: middle;
+        }
+
+        /* =========================================
+           SIDEBAR
+           ========================================= */
+        .sidebar {
+            width: 260px; /* Ancho fijo funcional */
+            background-color: var(--ds-component-sidebar-container-background);
+            padding: var(--ds-component-sidebar-container-padding-vertical) var(--ds-component-sidebar-container-padding-horizontal);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--ds-semantic-color-border-decorative-default);
+            flex-shrink: 0;
+        }
+
+        .sidebar-logo {
+            margin-bottom: var(--ds-patterns-layout-spacing-system-stack-lg);
+        }
+
+        .sidebar-logo img {
+            height: 32px;
+        }
+
+        .sidebar-group-title {
+            color: var(--ds-component-sidebar-group-title-text);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: var(--ds-patterns-layout-spacing-system-stack-md);
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--ds-component-sidebar-menu-item-spacing);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem; /* Ajuste visual interno */
+            border-radius: 0.5rem;
+            color: var(--ds-component-sidebar-menu-item-default-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--ds-component-sidebar-menu-item-active-text);
+        }
+
+        .nav-item.active {
+            background-color: var(--ds-component-sidebar-menu-item-active-background);
+            color: var(--ds-component-sidebar-menu-item-active-text);
+            position: relative;
+        }
+
+        /* Indicador de activo (barra lateral azul) */
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 1.5rem;
+            width: 3px;
+            background-color: var(--ds-component-sidebar-menu-item-active-indicator);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .nav-item .icon {
+            margin-right: var(--ds-patterns-layout-spacing-system-inline-md);
+        }
+
+        .nav-item .arrow {
+            margin-left: auto;
+            font-size: 1.2rem;
+        }
+
+        /* =========================================
+           MAIN CONTENT
+           ========================================= */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            height: 4rem; /* --ds-patterns-layout-app-bar-height? No, usar sizing estandar */
+            background-color: var(--ds-primitive-color-white);
+            border-bottom: 1px solid var(--ds-semantic-color-border-decorative-default);
+            padding: 0 var(--ds-patterns-layout-spacing-system-inline-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--ds-patterns-layout-spacing-system-inline-md);
+        }
+
+        .test-mode-badge {
+            background-color: var(--ds-semantic-color-background-surface-subtle);
+            border: 1px solid var(--ds-semantic-color-border-decorative-default);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ds-semantic-color-text-grey);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--ds-patterns-layout-spacing-system-inline-lg);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--ds-semantic-color-text-dark);
+            cursor: pointer;
+        }
+
+        /* TOOLBAR */
+        .toolbar {
+            padding: var(--ds-patterns-layout-spacing-system-stack-lg) var(--ds-patterns-layout-spacing-system-inline-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-container {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-input {
+            width: 100%;
+            height: var(--ds-patterns-forms-input-control-height);
+            border: 1px solid var(--ds-semantic-color-border-decorative-default); /* Default border */
+            border-radius: var(--ds-patterns-forms-input-control-radius);
+            padding-left: 2.5rem; /* Space for icon */
+            padding-right: 1rem;
+            background-color: var(--ds-patterns-forms-input-control-background);
+            color: var(--ds-semantic-color-text-dark);
+            font-family: var(--font-main);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--ds-patterns-forms-input-control-border-color);
+            box-shadow: 0 0 0 2px rgba(68, 152, 238, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--ds-patterns-forms-input-control-text-placeholder);
+            pointer-events: none;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            gap: var(--ds-patterns-layout-spacing-system-inline-md);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            height: var(--ds-component-button-common-button-size-medium-height);
+            padding: 0 var(--ds-component-button-common-button-size-medium-padding-x);
+            border-radius: 999px; /* Pill shape */
+            font-family: var(--font-main);
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--ds-component-button-icon-button-primary-states-default-background);
+            color: var(--ds-component-button-icon-button-primary-states-default-icon);
+            box-shadow: var(--ds-primitive-shadow-elevation-1-raw);
+        }
+
+        .btn-primary:hover {
+            background-color: #3f8be0; /* Manual darkening based on token logic */
+        }
+
+        .btn-secondary {
+            background-color: var(--ds-primitive-color-white);
+            border: 1px solid var(--ds-semantic-color-border-decorative-default);
+            color: var(--ds-semantic-color-text-grey);
+        }
+
+        /* DATA GRID CONTAINER */
+        .content-scroll {
+            flex: 1;
+            padding: 0 var(--ds-patterns-layout-spacing-system-inline-lg) var(--ds-patterns-layout-spacing-system-stack-lg);
+            overflow-y: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 var(--ds-component-table-container-spacing-row); /* Spacing between rows */
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background-color: var(--ds-component-table-header-background);
+            color: var(--ds-semantic-color-text-grey);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* First and last th radius for header bar */
+        .data-table th:first-child {
+            border-top-left-radius: var(--ds-component-table-header-border-radius);
+            border-bottom-left-radius: var(--ds-component-table-header-border-radius);
+        }
+        .data-table th:last-child {
+            border-top-right-radius: var(--ds-component-table-header-border-radius);
+            border-bottom-right-radius: var(--ds-component-table-header-border-radius);
+        }
+
+        .th-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .data-table td {
+            background-color: var(--ds-component-table-row-background-default);
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: var(--ds-semantic-color-text-dark);
+            border-top: var(--ds-component-table-cell-border-width) solid var(--ds-component-table-cell-border-color);
+            border-bottom: var(--ds-component-table-cell-border-width) solid var(--ds-component-table-cell-border-color);
+        }
+
+        /* Row styling logic: first cell gets left border/radius, last gets right */
+        .data-table td:first-child {
+            border-left: var(--ds-component-table-cell-border-width) solid var(--ds-component-table-cell-border-color);
+            border-top-left-radius: var(--ds-component-table-cell-border-radius);
+            border-bottom-left-radius: var(--ds-component-table-cell-border-radius);
+        }
+
+        .data-table td:last-child {
+            border-right: var(--ds-component-table-cell-border-width) solid var(--ds-component-table-cell-border-color);
+            border-top-right-radius: var(--ds-component-table-cell-border-radius);
+            border-bottom-right-radius: var(--ds-component-table-cell-border-radius);
+        }
+
+        .data-table tr:hover td {
+            background-color: var(--ds-component-table-row-background-hover);
+        }
+
+        /* Specific Cell Styles */
+        .user-cell {
+            font-weight: 500;
+        }
+
+        .email-cell {
+            color: var(--ds-semantic-color-text-grey);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--ds-component-data-display-badges-pill-badge-size-height);
+            padding: 0 0.5rem;
+            border-radius: var(--ds-component-data-display-badges-pill-badge-radius);
+            font-size: 0.625rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-active {
+            background-color: var(--ds-component-data-display-badges-pill-badge-variants-green-background);
+            color: var(--ds-component-data-display-badges-pill-badge-text-color);
+        }
+
+        .action-cell {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .action-icon {
+            color: var(--ds-semantic-color-text-grey);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .action-icon:hover {
+            background-color: var(--ds-semantic-color-background-surface-subtle);
+            color: var(--ds-semantic-color-text-info);
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <!-- Usando variable de token para el logo -->
+        <img src="https://www.kushkipagos.com/nav/images/k-logo.svg" alt="Kushki Logo">
+    </div>
+
+    <div class="sidebar-group-title">Navegación</div>
+    <ul class="sidebar-nav">
+        <li class="nav-item">
+            <span class="material-symbols-rounded icon">dashboard</span>
+            Resumen
+        </li>
+        <li class="nav-item">
+            <span class="material-symbols-rounded icon">shopping_cart</span>
+            Transacciones
+            <span class="material-symbols-rounded arrow">expand_more</span>
+        </li>
+        <li class="nav-item">
+            <span class="material-symbols-rounded icon">receipt_long</span>
+            Facturación
+        </li>
+    </ul>
+
+    <div class="sidebar-group-title" style="margin-top: 2rem;">Gestión</div>
+    <ul class="sidebar-nav">
+        <li class="nav-item active">
+            <span class="material-symbols-rounded icon">group</span>
+            Usuarios
+        </li>
+        <li class="nav-item">
+            <span class="material-symbols-rounded icon">shield</span>
+            Roles y Permisos
+        </li>
+        <li class="nav-item">
+            <span class="material-symbols-rounded icon">settings</span>
+            Configuración
+        </li>
+    </ul>
+</aside>
+
+<!-- MAIN AREA -->
+<main class="main-content">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <div class="test-mode-badge">
+                <span class="material-symbols-rounded" style="font-size: 16px; color: var(--ds-semantic-color-status-warning);">science</span>
+                MODO DE PRUEBA
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="material-symbols-rounded" style="color: var(--ds-semantic-color-text-grey); cursor: pointer;">notifications</span>
+            <span class="material-symbols-rounded" style="color: var(--ds-semantic-color-text-grey); cursor: pointer;">translate</span>
+            <div class="user-profile">
+                <div style="width: 32px; height: 32px; background: var(--ds-semantic-color-status-info); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">A</div>
+                Backoffice Admin
+                <span class="material-symbols-rounded">expand_more</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+        <div class="search-container">
+            <span class="material-symbols-rounded search-icon">search</span>
+            <input type="text" class="search-input" placeholder="Buscar por nombre de usuario...">
+        </div>
+        <div class="toolbar-actions">
+            <button class="btn btn-secondary">
+                <span class="material-symbols-rounded">filter_list</span>
+                Filtros
+            </button>
+            <button class="btn btn-primary">
+                <span class="material-symbols-rounded">add</span>
+                Agregar
+            </button>
+        </div>
+    </div>
+
+    <!-- CONTENT GRID -->
+    <div class="content-scroll">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>
+                    <div class="th-content">Nombre <span class="material-symbols-rounded" style="font-size: 16px;">unfold_more</span></div>
+                </th>
+                <th>
+                    <div class="th-content">Nombre de usuario <span class="material-symbols-rounded" style="font-size: 16px;">unfold_more</span></div>
+                </th>
+                <th>
+                    <div class="th-content">E-mail <span class="material-symbols-rounded" style="font-size: 16px;">unfold_more</span></div>
+                </th>
+                <th>
+                    <div class="th-content">Roles <span class="material-symbols-rounded" style="font-size: 16px;">unfold_more</span></div>
+                </th>
+                <th>
+                    <div class="th-content">Estado</div>
+                </th>
+                <th style="text-align: right;">Acciones</th>
+            </tr>
+            </thead>
+            <tbody id="userTableBody">
+            <!-- Javascript will populate this -->
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script>
+    // DATOS JSON
+    const usersData = [
+        {
+            "nombre": "Andres Bonilla",
+            "nombre_de_usuario": "0104022306",
+            "email": "napewi8639@fuzitea.com",
+            "roles": "USUARIO MAESTRO",
+            "estado": "ACTIVO"
+        },
+        {
+            "nombre": "Maria Gercelita PINCHI CARBAJAL",
+            "nombre_de_usuario": "01148434",
+            "email": "Mariagercelita@hotmail.com",
+            "roles": "USUARIO MAESTRO",
+            "estado": "ACTIVO"
+        },
+        {
+            "nombre": "MAGALY",
+            "nombre_de_usuario": "0301339198",
+            "email": "david.paredes@kushkipagos.com",
+            "roles": "USUARIO MAESTRO",
+            "estado": "ACTIVO"
+        },
+        {
+            "nombre": "Villarreal Mesias",
+            "nombre_de_usuario": "0400453130",
+            "email": "villarreal_marcelo@hotmail.com",
+            "roles": "MAESTRO CUSTOMER",
+            "estado": "ACTIVO"
+        },
+        {
+            "nombre": "Franklin Villarreal",
+            "nombre_de_usuario": "0401273289",
+            "email": "frankale2016@hotmail.com",
+            "roles": "USUARIO MAESTRO",
+            "estado": "ACTIVO"
+        },
+        {
+            "nombre": "Luis quilumba",
+            "nombre_de_usuario": "0500871231",
+            "email": "Quilumbaluis57@hotmail.com",
+            "roles": "USUARIO MAESTRO",
+            "estado": "ACTIVO"
+        },
+        {
+            "nombre": "Alejandro David",
+            "nombre_de_usuario": "0502554942",
+            "email": "alejandropiedrat@gmail.com",
+            "roles": "USUARIO MAESTRO",
+            "estado": "ACTIVO"
+        },
+        {
+            "nombre": "Luis Valdiviezo Ayala",
+            "nombre_de_usuario": "0603331182",
+            "email": "luis.miguel_lex@hotmail.com",
+            "roles": "USUARIO MAESTRO",
+            "estado": "ACTIVO"
+        }
+    ];
+
+    // Función de renderizado
+    function renderTable() {
+        const tbody = document.getElementById('userTableBody');
+        tbody.innerHTML = '';
+
+        usersData.forEach(user => {
+            const tr = document.createElement('tr');
+
+            // Determinamos el estilo del badge basado en el estado
+            // Nota: Usamos las variables definidas en CSS
+            const statusBadgeClass = user.estado === 'ACTIVO' ? 'badge-active' : '';
+
+            tr.innerHTML = `
+                    <td class="user-cell">${user.nombre}</td>
+                    <td>${user.nombre_de_usuario}</td>
+                    <td class="email-cell">${user.email}</td>
+                    <td>
+                        <span style="font-size: 0.8rem; font-weight: 500; color: var(--ds-semantic-color-text-dark); background: var(--ds-semantic-color-background-surface-subtle); padding: 2px 6px; border-radius: 4px;">
+                            ${user.roles}
+                        </span>
+                    </td>
+                    <td><span class="badge ${statusBadgeClass}">${user.estado}</span></td>
+                    <td>
+                        <div class="action-cell">
+                            <span class="material-symbols-rounded action-icon" title="Permisos">vpn_key</span>
+                            <span class="material-symbols-rounded action-icon" title="Editar">edit</span>
+                            <span class="material-symbols-rounded action-icon" title="Eliminar">delete</span>
+                        </div>
+                    </td>
+                `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', renderTable);
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{
+  "component": {
+    "data-display": {
+      "badges": {
+        "common": {
+          "text": { "color": { "value": "{primitive.color.white}", "type": "color" } },
+          "typography": {
+            "sm": {
+              "value": {
+                "fontFamily": "{primitive.font-family.ibm-plex-sans}",
+                "fontWeight": "{primitive.font-weight.medium}",
+                "fontSize":   "{primitive.font-size.scale-50}",
+                "lineHeight": "100%",
+                "letterSpacing": "{primitive.letter-spacing.default}",
+                "textDecoration": "{primitive.text-decoration.none}",
+                "textCase": "{primitive.text-case.none}"
+              },
+              "type": "typography"
+            }
+          },
+          "layout": {
+            "display":      { "value": "inline-flex" },
+            "alignItems":   { "value": "center" },
+            "justifyContent": { "value": "center" }
+          }
+        },
+        "pill-badge": {
+          "size": {
+            "height":   { "value": "{primitive.dimension.14}", "type": "sizing" },
+            "minWidth": { "value": "{primitive.dimension.27}", "type": "sizing" }
+          },
+          "radius": { "value": "9999px", "type": "borderRadius" },
+          "layout": {
+            "paddingX": { "value": "{primitive.dimension.6}", "type": "spacing" },
+            "paddingY": { "value": "{primitive.dimension.0}", "type": "spacing" },
+            "display":      { "value": "{component.data-display.badges.common.layout.display}" },
+            "alignItems":   { "value": "{component.data-display.badges.common.layout.alignItems}" },
+            "justifyContent": { "value": "{component.data-display.badges.common.layout.justifyContent}" }
+          },
+          "typography": { "value": "{component.data-display.badges.common.typography.sm}", "type": "typography" },
+          "text": { "color": { "value": "{component.data-display.badges.common.text.color}", "type": "color" } },
+          "variants": {
+            "blue":  { "background": { "value": "{primitive.color.blue.500}",  "type": "color" } },
+            "green": { "background": { "value": "{primitive.color.green.700}", "type": "color" } }
+          }
+        },
+        "round-badge": {
+          "size": {
+            "height":   { "value": "{primitive.dimension.14}", "type": "sizing" },
+            "minWidth": { "value": "{primitive.dimension.27}", "type": "sizing" },
+            "diameter": { "value": "{primitive.dimension.14}", "type": "sizing" }
+          },
+          "radius": { "value": "9999px", "type": "borderRadius" },
+          "layout": {
+            "paddingX": { "value": "{primitive.dimension.6}", "type": "spacing" },
+            "paddingY": { "value": "{primitive.dimension.0}", "type": "spacing" },
+            "display":      { "value": "{component.data-display.badges.common.layout.display}" },
+            "alignItems":   { "value": "{component.data-display.badges.common.layout.alignItems}" },
+            "justifyContent": { "value": "{component.data-display.badges.common.layout.justifyContent}" }
+          },
+          "typography": { "value": "{component.data-display.badges.common.typography.sm}", "type": "typography" },
+          "text": { "color": { "value": "{semantic.color.on.primary}", "type": "color" } },
+          "variants": {
+            "blue":  { "background": { "value": "{primitive.color.blue.500}",  "type": "color" }, "text": {} },
+            "green": { "background": { "value": "{primitive.color.green.700}","type": "color" }, "text": {} }
+          }
+        }
+      }
+    }
+  }
+}

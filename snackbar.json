@@ -1,0 +1,68 @@
+{
+  "component": {
+    "snackbar": {
+      "common": {
+        "layout": {
+          "borderRadius": { "value": "{primitive.radius.medium}", "type": "borderRadius" },
+          "height":       { "value": "72px", "type": "sizing" }
+        },
+        "content": {
+          "gap": { "value": "{primitive.spacing.scale-300}", "type": "spacing" }
+        },
+        "action": {
+          "ref": { "value": "{component.button.text-button.button-primary}" }
+        }
+      },
+      "size": {
+        "default": { "height": { "value": "{component.snackbar.common.layout.height}", "type": "sizing" } },
+        "tall":    { "height": { "value": "114px", "type": "sizing" } }
+      },
+      "info": {
+        "background": { "value": "{semantic.surface.info}", "type": "color" },
+        "text": { "color": { "value": "{semantic.text.info}", "type": "color" } },
+        "icon": { "name": { "value": "{icon.info}" } },
+        "variants": {
+          "text-only": {
+            "withIcon":   { "value": false, "type": "boolean" },
+            "withAction": { "value": false, "type": "boolean" }
+          },
+          "with-icon": {
+            "withIcon":   { "value": true,  "type": "boolean" },
+            "withAction": { "value": false, "type": "boolean" }
+          },
+          "with-action": {
+            "withIcon":   { "value": false, "type": "boolean" },
+            "withAction": { "value": true,  "type": "boolean" }
+          },
+          "with-icon-and-action": {
+            "withIcon":   { "value": true,  "type": "boolean" },
+            "withAction": { "value": true,  "type": "boolean" }
+          }
+        }
+      },
+      "danger": {
+        "background": { "value": "{semantic.surface.danger}", "type": "color" },
+        "text": { "color": { "value": "{semantic.text.error}", "type": "color" } },
+        "icon": { "name": { "value": "{icon.error}" } },
+        "variants": {
+          "text-only": {
+            "withIcon":   { "value": false, "type": "boolean" },
+            "withAction": { "value": false, "type": "boolean" }
+          },
+          "with-icon": {
+            "withIcon":   { "value": true,  "type": "boolean" },
+            "withAction": { "value": false, "type": "boolean" }
+          },
+          "with-action": {
+            "withIcon":   { "value": false, "type": "boolean" },
+            "withAction": { "value": true,  "type": "boolean" }
+          },
+          "with-icon-and-action": {
+            "withIcon":   { "value": true,  "type": "boolean" },
+            "withAction": { "value": true,  "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}

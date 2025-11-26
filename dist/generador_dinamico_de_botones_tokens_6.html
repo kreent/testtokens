@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generador de botones — tokens6.json</title>
+  <!-- Fuentes e íconos según tokens -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24..48,400,0,0" rel="stylesheet" />
+  <style>
+    :root {
+      /* Surface y texto base (semantic.color) */
+      --surface-default: #fbfcfe; /* primitive.gray.100 */
+      --text-default: #46525c;    /* primitive.gray.800 */
+
+      /* Shadows (semantic.shadow.ch -> primitive.shadow.elevation-1-raw) */
+      --shadow-ch: 0 0.5rem 1.0625rem 0 rgba(106,167,197,0.15),
+                   0 1.6px 2.76px 0 rgba(106,167,197,0.075);
+
+      /* Radius (semantic.radius.interactive.default -> primitive.radius.large -> 1rem) */
+      --radius-interactive: 1rem;
+
+      /* Border width default (semantic.border.width.default -> primitive.border-width.1 -> 0.0625rem) */
+      --border-w: 0.0625rem;
+
+      /* Button sizes (component.common.button-size) */
+      --btn-sm-h: 2.25rem; --btn-sm-px: 1rem;  --btn-sm-gap: 0.5rem; --btn-sm-fz: 0.938rem;
+      --btn-md-h: 2.5rem;  --btn-md-px: 1.25rem;--btn-md-gap: 0.5rem; --btn-md-fz: 1rem;
+      --btn-lg-h: 3rem;    --btn-lg-px: 1.5rem; --btn-lg-gap: 0.75rem;--btn-lg-fz: 1.125rem;
+
+      /* Icon sizes (component.common.icon.size) */
+      --icon-sm: 1rem; --icon-md: 1.25rem; --icon-lg: 1.5rem;
+
+      /* Tokens de color (primitive.color.*) necesarios para botones */
+      --blue-100: #bfdffa;
+      --blue-200: #4498ee;
+      --blue-250: #3f8be0;
+      --blue-300: #3879cd;
+      --blue-400: #1e65ae;
+      --blue-500: #023365;
+
+      --gray-100: #fbfcfe;
+      --gray-500: #cbd5e0;
+      --gray-700: #677684;
+      --gray-800: #46525c;
+
+      --red-100: #ffeaee;
+      --red-200: #f6aebb;
+      --red-500: #e24763;
+
+      --white: #ffffff;
+
+      /* Opacity (semantic.opacity.disabled) */
+      --op-disabled: 0.4;
+
+      /* Tipografía de botones (component.button.small + families) */
+      --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      --btn-fw: 500; /* primitive.font-weight.medium */
+      --btn-lh: 140%; /* primitive.line-height.relaxed */
+
+      /* Espaciado de icono (component.common.icon.spacing.gap) */
+      --icon-gap: 0.5rem;
+    }
+
+    html, body { height: 100%; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--surface-default);
+      color: var(--text-default);
+      font-family: var(--font-sans);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 2rem;
+    }
+
+    .panel {
+      background: var(--white);
+      border-radius: 1rem; /* semantic.radius.surface.default is medium(0.75rem), but interactive for buttons is 1rem; usar 1rem para paneles para consistencia visual */
+      box-shadow: var(--shadow-ch);
+      padding: 1.25rem;
+    }
+
+    .panel h2 {
+      margin: 0 0 0.75rem 0;
+      font-weight: 500; /* semantic.typography.h2 weight medium */
+      font-size: 2rem;  /* semantic.typography.h2 size */
+      letter-spacing: -0.5%;
+      line-height: 120%;
+    }
+
+    .field { margin-bottom: 1rem; }
+    .label { display: block; font-size: 0.938rem; margin-bottom: 0.35rem; }
+    .row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    input[type="text"], select {
+      width: 100%;
+      height: 2.5rem;
+      border: var(--border-w) solid var(--gray-500);
+      border-radius: 0.75rem; /* primitive.radius.medium -> 0.75rem */
+      padding: 0 0.75rem;
+      font: 400 1rem var(--font-sans);
+      background: var(--gray-100);
+    }
+    .check { display: flex; align-items: center; gap: 0.35rem; }
+
+    .preview {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+    .canvas {
+      background: var(--white);
+      border-radius: 1rem;
+      box-shadow: var(--shadow-ch);
+      padding: 1rem;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* ====== BOTONES (derivados 100% de tokens) ====== */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-interactive);
+      border-width: var(--border-w);
+      border-style: solid;
+      font-weight: var(--btn-fw);
+      line-height: var(--btn-lh);
+      gap: var(--icon-gap);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition: background 120ms ease, color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+    }
+    .btn:disabled { opacity: var(--op-disabled); cursor: not-allowed; }
+
+    /* Tamaños (component.common.button-size) */
+    .btn.sm { height: var(--btn-sm-h); padding: 0 var(--btn-sm-px); font-size: var(--btn-sm-fz); }
+    .btn.md { height: var(--btn-md-h); padding: 0 var(--btn-md-px); font-size: var(--btn-md-fz); }
+    .btn.lg { height: var(--btn-lg-h); padding: 0 var(--btn-lg-px); font-size: var(--btn-lg-fz); }
+
+    /* Variantes */
+    /* Primary (component.button-primary.states) */
+    .btn.primary { background: var(--blue-200); color: var(--white); border-color: var(--blue-200); box-shadow: var(--shadow-ch); }
+    .btn.primary:hover:not(:disabled) { background: var(--blue-300); border-color: var(--blue-300); }
+    .btn.primary:focus-visible:not(:disabled) { background: var(--blue-250); border-color: var(--blue-250); outline: none; }
+    .btn.primary:disabled { background: var(--blue-100); border-color: var(--blue-100); color: var(--white); }
+
+    /* Secondary (component.button-secondary.states) */
+    .btn.secondary { background: var(--white); color: var(--gray-700); border-color: var(--white); box-shadow: var(--shadow-ch); }
+    .btn.secondary:hover:not(:disabled) { background: var(--gray-100); border-color: var(--gray-100); }
+    .btn.secondary:focus-visible:not(:disabled) { color: var(--blue-500); background: var(--white); border-color: var(--gray-100); outline: none; }
+    .btn.secondary:disabled { background: var(--gray-100); border-color: var(--gray-100); color: var(--gray-500); }
+
+    /* Outline (component.button-outline.states) */
+    .btn.outline { background: var(--white); color: var(--blue-200); border-color: var(--blue-200); box-shadow: var(--shadow-ch); }
+    .btn.outline:hover:not(:disabled) { color: var(--blue-300); border-color: var(--blue-300); }
+    .btn.outline:focus-visible:not(:disabled) { color: var(--blue-250); border-color: var(--blue-250); outline: none; }
+    .btn.outline:disabled { background: var(--gray-100); color: var(--gray-500); border-color: var(--gray-500); }
+
+    /* Text (component.button-text.states) */
+    .btn.text { background: var(--white); color: var(--blue-200); border-color: var(--white); }
+    .btn.text:hover:not(:disabled) { background: var(--white); }
+    .btn.text:focus-visible:not(:disabled) { color: var(--gray-700); outline: none; }
+    .btn.text:disabled { background: var(--white); color: var(--gray-700); border-color: var(--gray-500); }
+
+    /* Link (component.button-link.states) */
+    .btn.link { background: var(--white); color: var(--blue-200); border-color: var(--white); }
+    .btn.link:hover:not(:disabled) { color: var(--blue-500); }
+    .btn.link:focus-visible:not(:disabled) { color: var(--blue-400); outline: none; }
+    .btn.link:disabled { color: var(--blue-100); }
+
+    /* Íconos (component.button-*.with-icon-*) */
+    .material-symbols-rounded { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; line-height: 1; }
+    .btn.sm .material-symbols-rounded { font-size: var(--icon-sm); }
+    .btn.md .material-symbols-rounded { font-size: var(--icon-md); }
+    .btn.lg .material-symbols-rounded { font-size: var(--icon-lg); }
+
+    /* Utilidades */
+    .muted { color: #b4b9be; font-size: 0.938rem; }
+    .hr { height: 1px; background: #e2e8f0; margin: 0.5rem 0 1rem; }
+    .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="panel">
+      <h2>Configurar botón</h2>
+      <div class="field">
+        <label class="label" for="txt">Texto del botón</label>
+        <input id="txt" type="text" placeholder="p.ej., Guardar cambios" value="Nuevo botón" />
+      </div>
+
+      <div class="field">
+        <span class="label">Variante</span>
+        <div class="row">
+          <label class="check"><input type="radio" name="variant" value="primary" checked /> Primary</label>
+          <label class="check"><input type="radio" name="variant" value="secondary" /> Secondary</label>
+          <label class="check"><input type="radio" name="variant" value="outline" /> Outline</label>
+          <label class="check"><input type="radio" name="variant" value="text" /> Text</label>
+          <label class="check"><input type="radio" name="variant" value="link" /> Link</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Tamaño</span>
+        <div class="row">
+          <label class="check"><input type="radio" name="size" value="sm" /> Pequeño</label>
+          <label class="check"><input type="radio" name="size" value="md" checked /> Mediano</label>
+          <label class="check"><input type="radio" name="size" value="lg" /> Grande</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Ícono</span>
+        <div class="row">
+          <label class="check"><input type="radio" name="iconPos" value="none" checked /> Sin ícono</label>
+          <label class="check"><input type="radio" name="iconPos" value="leading" /> Izquierda</label>
+          <label class="check"><input type="radio" name="iconPos" value="trailing" /> Derecha</label>
+        </div>
+        <div class="row" style="margin-top: .5rem;">
+          <input id="iconName" type="text" placeholder="nombre de Material Symbol (p.ej., add, save, edit)" />
+        </div>
+        <div class="muted">Usa Google Material Symbols Rounded. Respeta posición (leading/trailing) y tamaño según botón.</div>
+      </div>
+
+      <div class="field">
+        <label class="check"><input id="disabled" type="checkbox" /> Deshabilitar botón</label>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="actions">
+        <button id="btnPreview" class="btn primary md" type="button">Vista previa</button>
+        <button id="btnAdd" class="btn outline md" type="button">
+          <span class="material-symbols-rounded" aria-hidden="true">add</span>
+          Agregar al lienzo
+        </button>
+        <button id="btnClear" class="btn text md" type="button">Limpiar lienzo</button>
+      </div>
+    </section>
+
+    <section class="preview">
+      <div class="panel">
+        <h2>Vista previa</h2>
+        <div id="previewArea" class="canvas"></div>
+      </div>
+      <div class="panel">
+        <h2>Lienzo</h2>
+        <div id="canvasArea" class="canvas"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const $ = (sel, ctx=document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+    const txt = $('#txt');
+    const variant = () => $('input[name="variant"]:checked').value;
+    const size = () => $('input[name="size"]:checked').value;
+    const iconPos = () => $('input[name="iconPos"]:checked').value;
+    const iconName = $('#iconName');
+    const disabled = $('#disabled');
+
+    const previewArea = $('#previewArea');
+    const canvasArea = $('#canvasArea');
+    const btnPreview = $('#btnPreview');
+    const btnAdd = $('#btnAdd');
+    const btnClear = $('#btnClear');
+
+    function buildButton({text, variant, size, iconPos, iconName, disabled}) {
+      const btn = document.createElement('button');
+      btn.className = `btn ${variant} ${size}`;
+      btn.type = 'button';
+      btn.disabled = !!disabled;
+
+      const hasIcon = iconPos !== 'none' && iconName.trim() !== '';
+
+      if (hasIcon && iconPos === 'leading') {
+        const ic = document.createElement('span');
+        ic.className = 'material-symbols-rounded';
+        ic.setAttribute('aria-hidden','true');
+        ic.textContent = iconName.trim();
+        btn.append(ic);
+      }
+
+      const label = document.createElement('span');
+      label.textContent = text || '';
+      btn.append(label);
+
+      if (hasIcon && iconPos === 'trailing') {
+        const ic = document.createElement('span');
+        ic.className = 'material-symbols-rounded';
+        ic.setAttribute('aria-hidden','true');
+        ic.textContent = iconName.trim();
+        btn.append(ic);
+      }
+
+      return btn;
+    }
+
+    function refreshPreview() {
+      previewArea.innerHTML = '';
+      const node = buildButton({
+        text: txt.value,
+        variant: variant(),
+        size: size(),
+        iconPos: iconPos(),
+        iconName: iconName.value,
+        disabled: disabled.checked,
+      });
+      previewArea.append(node);
+    }
+
+    function addToCanvas() {
+      const node = buildButton({
+        text: txt.value,
+        variant: variant(),
+        size: size(),
+        iconPos: iconPos(),
+        iconName: iconName.value,
+        disabled: disabled.checked,
+      });
+      canvasArea.append(node);
+    }
+
+    btnPreview.addEventListener('click', refreshPreview);
+    btnAdd.addEventListener('click', addToCanvas);
+    btnClear.addEventListener('click', () => canvasArea.innerHTML = '');
+
+    // Cambio reactivo de controles -> refrescar vista previa
+    ['input', 'change'].forEach(evt => {
+      document.addEventListener(evt, (e) => {
+        if (e.target.matches('#txt, #iconName, #disabled, input[name="variant"], input[name="size"], input[name="iconPos"]')) {
+          refreshPreview();
+        }
+      });
+    });
+
+    // Primera render
+    refreshPreview();
+  </script>
+</body>
+</html>
