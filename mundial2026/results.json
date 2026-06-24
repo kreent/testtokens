@@ -1,0 +1,129 @@
+{
+  "model": "ELO + Dixon-Coles + Monte Carlo",
+  "date": "2026-06-24",
+  "validation": {
+    "walk_forward": {
+      "method": "walk_forward_cross_validation",
+      "n_matches": 27,
+      "mean_log_loss": 0.9517,
+      "std_log_loss": 0.5792,
+      "accuracy": 0.5926,
+      "random_baseline_log_loss": 1.0986,
+      "skill_score": 0.1337
+    },
+    "bootstrap_top15": {
+      "Argentina": {
+        "mean": 38.74,
+        "ci_lower": 35.69,
+        "ci_upper": 42.15,
+        "std": 1.67
+      },
+      "Spain": {
+        "mean": 26.84,
+        "ci_lower": 20.48,
+        "ci_upper": 31.55,
+        "std": 3.17
+      },
+      "Germany": {
+        "mean": 13.73,
+        "ci_lower": 11.05,
+        "ci_upper": 16.95,
+        "std": 1.56
+      },
+      "Brazil": {
+        "mean": 9.46,
+        "ci_lower": 7.15,
+        "ci_upper": 11.41,
+        "std": 1.12
+      },
+      "Mexico": {
+        "mean": 2.48,
+        "ci_lower": 1.3,
+        "ci_upper": 3.9,
+        "std": 0.73
+      },
+      "USA": {
+        "mean": 2.19,
+        "ci_lower": 1.25,
+        "ci_upper": 3.65,
+        "std": 0.67
+      },
+      "Belgium": {
+        "mean": 1.92,
+        "ci_lower": 1.25,
+        "ci_upper": 2.75,
+        "std": 0.41
+      },
+      "Morocco": {
+        "mean": 1.5,
+        "ci_lower": 0.75,
+        "ci_upper": 2.6,
+        "std": 0.5
+      },
+      "Switzerland": {
+        "mean": 0.89,
+        "ci_lower": 0.2,
+        "ci_upper": 1.75,
+        "std": 0.39
+      },
+      "Uruguay": {
+        "mean": 0.62,
+        "ci_lower": 0.25,
+        "ci_upper": 1.1,
+        "std": 0.22
+      },
+      "Canada": {
+        "mean": 0.48,
+        "ci_lower": 0.15,
+        "ci_upper": 0.8,
+        "std": 0.17
+      },
+      "Colombia": {
+        "mean": 0.39,
+        "ci_lower": 0.15,
+        "ci_upper": 0.7,
+        "std": 0.14
+      },
+      "Czech Republic": {
+        "mean": 0.22,
+        "ci_lower": 0.05,
+        "ci_upper": 0.55,
+        "std": 0.14
+      },
+      "Ivory Coast": {
+        "mean": 0.16,
+        "ci_lower": 0.05,
+        "ci_upper": 0.4,
+        "std": 0.1
+      },
+      "Serbia": {
+        "mean": 0.15,
+        "ci_lower": 0.05,
+        "ci_upper": 0.35,
+        "std": 0.08
+      }
+    }
+  },
+  "championship_probabilities": {
+    "Argentina": 38.33,
+    "Spain": 29.59,
+    "Germany": 12.67,
+    "Brazil": 10.27,
+    "Belgium": 2.05,
+    "Mexico": 1.67,
+    "USA": 1.37,
+    "Morocco": 0.92,
+    "Switzerland": 0.85,
+    "Uruguay": 0.84,
+    "Canada": 0.5,
+    "Colombia": 0.43,
+    "Serbia": 0.15,
+    "Czech Republic": 0.12,
+    "Ivory Coast": 0.08,
+    "Australia": 0.06,
+    "Egypt": 0.05,
+    "Iran": 0.03,
+    "Nigeria": 0.01,
+    "Scotland": 0.01
+  }
+}
