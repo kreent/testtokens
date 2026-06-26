@@ -1,0 +1,22 @@
+{
+  "date": "2026-06-25",
+  "j3_accuracy": "6/6",
+  "j3_logloss": 0.5067,
+  "champion_after": {
+    "Argentina": 36.83,
+    "Spain": 25.51,
+    "Germany": 13.69,
+    "Brazil": 12.14,
+    "Mexico": 3.45,
+    "USA": 2.27,
+    "Belgium": 1.82,
+    "Switzerland": 1.49,
+    "Morocco": 0.91,
+    "Uruguay": 0.64,
+    "South Korea": 0.33,
+    "Canada": 0.21,
+    "Colombia": 0.19,
+    "Australia": 0.12,
+    "Ivory Coast": 0.12
+  }
+}
