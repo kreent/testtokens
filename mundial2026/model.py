@@ -181,12 +181,22 @@ def elo_to_lambda(elo_a: float, elo_b: float, avg_goals: float = 1.25) -> tuple:
     """
     Convierte diferencia ELO en lambdas (goles esperados) para modelo Poisson.
     Basado en calibración con 49,000+ partidos internacionales.
+
+    Amortiguación de brechas grandes ("underdog resilience"): en este Mundial
+    los favoritos rinden sistemáticamente por debajo de su xG teórico contra
+    equipos de bloque bajo (España 0-0 Cabo Verde, Argentina 1-1 en 90',
+    Marruecos 4-2 Haití). Por encima de 200 puntos de brecha, cada punto
+    extra solo cuenta 55%, y el underdog tiene un piso ofensivo más alto.
     """
-    diff = (elo_a - elo_b) / 400
+    raw_gap = elo_a - elo_b
+    gap = abs(raw_gap)
+    if gap > 200:
+        gap = 200 + (gap - 200) * 0.55
+    diff = np.copysign(gap, raw_gap) / 400
     factor = 10 ** diff
     lambda_a = avg_goals * np.sqrt(factor)
     lambda_b = avg_goals / np.sqrt(factor)
-    return max(lambda_a, 0.2), max(lambda_b, 0.2)
+    return max(lambda_a, 0.35), max(lambda_b, 0.35)
 
 
 def dixon_coles_correction(lambda_a: float, lambda_b: float,
