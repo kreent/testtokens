@@ -177,7 +177,9 @@ def elo_win_prob(elo_a: float, elo_b: float, home_advantage: float = 0) -> tuple
     return p_win_a_adj, p_draw, p_win_b_adj
 
 
-def elo_to_lambda(elo_a: float, elo_b: float, avg_goals: float = 1.25) -> tuple:
+def elo_to_lambda(elo_a: float, elo_b: float, avg_goals: float = 1.43) -> tuple:
+    # avg_goals recalibrado in-tournament: 2.85 goles/partido en los 55
+    # partidos registrados del Mundial 2026 (vs 2.5 del prior histórico).
     """
     Convierte diferencia ELO en lambdas (goles esperados) para modelo Poisson.
     Basado en calibración con 49,000+ partidos internacionales.
